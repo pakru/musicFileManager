@@ -19,8 +19,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_treeView_clicked(const QModelIndex &index);
-
     void on_tableView_doubleClicked(const QModelIndex &index);
 
     void on_actionQuit_triggered();

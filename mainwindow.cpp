@@ -7,7 +7,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString sPath = "E:/";
+    QString platformType = QSysInfo::kernelType();
+    QString sPath;
+    qDebug() << "OS name: " << platformType;
+    if (platformType.contains("linux", Qt::CaseInsensitive)) {
+        sPath = "/";
+    } else { // else think that it is Windows
+        sPath = "C:/";
+    }
     //dirModel = new QFileSystemModel(this);
     //dirModel->setRootPath(sPath);
     //dirModel->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs);
@@ -15,6 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     fileModel = new QFileSystemModel(this);
     fileModel->setFilter(QDir::NoDotAndDotDot | QDir::Files);
     fileModel->setRootPath(sPath);
+
+
 
     //ui->treeView->setModel(dirModel);
     ui->tableView->setModel(fileModel);
